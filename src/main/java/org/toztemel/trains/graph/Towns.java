@@ -54,7 +54,4 @@ public class Towns {
         return graph;
     }
 
-    public void addAllRoutes(Set<Town> towns) {
-        graph.addAll(towns);
-    }
 }
