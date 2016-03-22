@@ -5,13 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputReader {
+
     private static final String DELIMITER = ",";
     private static final String EMPTY_STRING = "";
     private static final String SPACE = " ";
     List<String> input;
 
     public InputReader() {
-        input = new ArrayList<String>();
+        input = new ArrayList<>();
     }
 
     public void readFrom(InputFileReader fileReader) {
@@ -20,7 +21,7 @@ public class InputReader {
 
     public void read(String inputString) {
         inputString = inputString.replace(SPACE, EMPTY_STRING);
-        if (inputString.indexOf(DELIMITER) != -1) {
+        if (inputString.contains(DELIMITER)) {
             input.addAll(Arrays.asList(inputString.split(DELIMITER)));
         } else {
             input.add(inputString);
