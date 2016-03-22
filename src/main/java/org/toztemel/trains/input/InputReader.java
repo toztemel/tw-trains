@@ -1,5 +1,7 @@
 package org.toztemel.trains.input;
 
+import org.toztemel.trains.exception.CannotReadFromInputFileException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +17,7 @@ public class InputReader {
         input = new ArrayList<>();
     }
 
-    public void readFrom(InputFileReader fileReader) {
+    public void readFrom(InputFileReader fileReader) throws CannotReadFromInputFileException {
         read(fileReader.read());
     }
 
@@ -28,11 +30,11 @@ public class InputReader {
         }
     }
 
-    public boolean contains(String string) {
+    boolean contains(String string) {
         return input.contains(string);
     }
 
-    public int size() {
+    int size() {
         return input.size();
     }
 

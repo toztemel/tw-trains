@@ -1,5 +1,6 @@
 package org.toztemel.trains;
 
+import org.toztemel.trains.exception.CannotReadFromInputFileException;
 import org.toztemel.trains.exception.NoSuchTownException;
 import org.toztemel.trains.graph.GraphBuilder;
 import org.toztemel.trains.graph.Town;
@@ -21,8 +22,8 @@ public class TrainRouteOffice {
             System.exit(-1);
         }
 
-        String fileName = args[0];
         try {
+            String fileName = args[0];
             InputReader inputReader = new InputReader();
             inputReader.readFrom(new InputFileReader(fileName));
             List<String> input = inputReader.getInput();
@@ -50,8 +51,18 @@ public class TrainRouteOffice {
                 display.print(i + 1);
             }
         } catch (NoSuchTownException e) {
-            e.printStackTrace();
+            reportQuestioningProblem(e);
+        } catch (CannotReadFromInputFileException e) {
+            reportInputFileProblem(e);
         }
+    }
+
+    private static void reportQuestioningProblem(NoSuchTownException e) {
+        e.printStackTrace();
+    }
+
+    private static void reportInputFileProblem(CannotReadFromInputFileException e) {
+        e.printStackTrace();
     }
 
 }

@@ -1,11 +1,11 @@
 package org.toztemel.trains.input;
 
+import org.toztemel.trains.exception.CannotReadFromInputFileException;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class InputFileReader {
-
-    private static final String CANNOT_READ_CONTENT = "";
 
     private String inputFile;
 
@@ -13,17 +13,13 @@ public class InputFileReader {
         this.inputFile = inputFile;
     }
 
-    public String read() {
+    public String read() throws CannotReadFromInputFileException {
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
             return reader.readLine();
         } catch (Exception e) {
-            logError(e);
+            throw new CannotReadFromInputFileException(e, inputFile);
         }
-        return CANNOT_READ_CONTENT;
     }
 
-    private void logError(Exception e) {
-        e.printStackTrace();
-    }
 
 }
