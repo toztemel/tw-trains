@@ -2,18 +2,18 @@ package org.toztemel.trains.trips;
 
 import org.toztemel.trains.exception.NoSuchRouteException;
 import org.toztemel.trains.exception.NoSuchTownException;
+import org.toztemel.trains.graph.Graph;
 import org.toztemel.trains.graph.Town;
-import org.toztemel.trains.graph.Towns;
 
 public class TripWithExactStops implements Trip {
 
-    private Towns graph;
+    private Graph graph;
     private int exactDepth;
     private int totalTripCount;
     private Town sourceTown;
-    private Town destTown;
+    private Town destinationTown;
 
-    public TripWithExactStops(Towns graph, int depth) {
+    public TripWithExactStops(Graph graph, int depth) {
         this.graph = graph;
         this.exactDepth = depth;
     }
@@ -21,26 +21,36 @@ public class TripWithExactStops implements Trip {
     @Override
     public int calculate(Town... towns) throws NoSuchRouteException, NoSuchTownException {
         totalTripCount = 0;
-        Town source = towns[0];
-        Town dest = towns[1];
-        sourceTown = graph.getTown(source.name());
-        destTown = graph.getTown(dest.name());
+        sourceTown = graph.getTown(towns[0]);
+        destinationTown = graph.getTown(towns[1]);
 
-        traverse(sourceTown, destTown, 1);
+        traverse(sourceTown, 1);
 
         return totalTripCount;
     }
 
-    private void traverse(Town town, Town dest, int depth) {
-        if (town.hasRouteTo(dest) && exactDepth == depth) {
+    private void traverse(Town town, int depth) {
+        if (depthMatches(depth) && routeExists(town)) {
             totalTripCount++;
         }
-        if (depth >= exactDepth)
+        if (depthExceeds(depth)) {
             return;
-
-        for (Town t : town.allRoutes()) {
-            traverse(t, dest, depth + 1);
         }
+        for (Town nextTown : town.getOutgoingRoutes()) {
+            traverse(nextTown, depth + 1);
+        }
+    }
+
+    private boolean depthExceeds(int depth) {
+        return depth >= exactDepth;
+    }
+
+    private boolean depthMatches(int depth) {
+        return exactDepth == depth;
+    }
+
+    private boolean routeExists(Town town) {
+        return town.hasRouteTo(destinationTown);
     }
 
 }

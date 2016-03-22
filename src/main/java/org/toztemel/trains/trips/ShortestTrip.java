@@ -2,36 +2,32 @@ package org.toztemel.trains.trips;
 
 import org.toztemel.trains.exception.NoSuchTownException;
 import org.toztemel.trains.graph.Town;
-import org.toztemel.trains.graph.Towns;
+import org.toztemel.trains.graph.Graph;
 import org.toztemel.trains.exception.NoSuchRouteException;
 
 public class ShortestTrip implements Trip {
 
-    private Towns originalGraph;
+    private Graph originalGraph;
     private Town sourceTown;
     private Town destTown;
 
-    public ShortestTrip(Towns graph) {
+    public ShortestTrip(Graph graph) {
         this.originalGraph = graph;
     }
 
     @Override
     public int calculate(Town... towns) throws NoSuchRouteException, NoSuchTownException {
-        String sourceName = towns[0].name();
-        String destName = towns[1].name();
+        Graph tempGraph = new Graph(originalGraph.getTowns());
 
-        Towns tempGraph = new Towns(originalGraph.getTowns());
-
-        sourceTown = tempGraph.getTown(sourceName);
-        destTown = tempGraph.getTown(destName);
-
-        initializeDistances(tempGraph);
+        sourceTown = tempGraph.getTown(towns[0]);
+        destTown = tempGraph.getTown(towns[1]);
+        resetDistances(tempGraph);
         traverse(sourceTown, 0);
 
         return destTown.getOwnDistance();
     }
 
-    private void initializeDistances(Towns towns) {
+    private void resetDistances(Graph towns) {
         for (Town town : towns.getTowns()) {
             if (town.equals(sourceTown))
                 town.setDistance(0);
@@ -41,9 +37,10 @@ public class ShortestTrip implements Trip {
     }
 
     private void traverse(Town town, int distance) throws NoSuchRouteException {
-        int waitingDuratian = 2;
+        int waitingDuration = 2;
+
         if (town.equals(sourceTown) || town.equals(destTown))
-            waitingDuratian = 0;
+            waitingDuration = 0;
 
         if (town.getOwnDistance() < distance) {
             if (town.equals(sourceTown) && town.equals(destTown)) {
@@ -52,8 +49,9 @@ public class ShortestTrip implements Trip {
             return;
         }
         town.setDistance(distance);
-        for (Town t : town.allRoutes()) {
-            traverse(t, town.getOwnDistance() + town.getRoute(t).length() + waitingDuratian);
+        for (Town t : town.getOutgoingRoutes()) {
+            int newDistance = town.getOwnDistance() + town.getRoute(t).length() + waitingDuration;
+            traverse(t, newDistance);
         }
     }
 

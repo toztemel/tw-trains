@@ -2,15 +2,15 @@ package org.toztemel.trains.trips;
 
 import org.toztemel.trains.exception.NoSuchTownException;
 import org.toztemel.trains.graph.Town;
-import org.toztemel.trains.graph.Towns;
+import org.toztemel.trains.graph.Graph;
 import org.toztemel.trains.exception.NoSuchRouteException;
 import org.toztemel.trains.graph.Track;
 
 public class DistanceCalculator implements Trip {
 
-    private Towns graph;
+    private Graph graph;
 
-    public DistanceCalculator(Towns graph) {
+    public DistanceCalculator(Graph graph) {
         this.graph = graph;
     }
 
@@ -28,7 +28,7 @@ public class DistanceCalculator implements Trip {
             distance += route.length();
             distance += waitingDuration;
         }
-        distance -= waitingDuration;
+        distance -= waitingDuration; // rollback waiting duration at the last town
         return distance;
     }
 

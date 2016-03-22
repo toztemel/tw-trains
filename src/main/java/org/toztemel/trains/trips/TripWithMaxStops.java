@@ -3,15 +3,15 @@ package org.toztemel.trains.trips;
 import org.toztemel.trains.exception.NoSuchRouteException;
 import org.toztemel.trains.exception.NoSuchTownException;
 import org.toztemel.trains.graph.Town;
-import org.toztemel.trains.graph.Towns;
+import org.toztemel.trains.graph.Graph;
 
 public class TripWithMaxStops implements Trip {
 
-    private Towns graph;
+    private Graph graph;
     private int maxDepth;
     private int totalTripCount;
 
-    public TripWithMaxStops(Towns graph, int depth) {
+    public TripWithMaxStops(Graph graph, int depth) {
         this.graph = graph;
         this.maxDepth = depth;
     }
@@ -36,7 +36,7 @@ public class TripWithMaxStops implements Trip {
         if (depth == maxDepth)
             return;
 
-        for (Town t : town.allRoutes()) {
+        for (Town t : town.getOutgoingRoutes()) {
             traverse(t, dest, depth + 1);
         }
     }
