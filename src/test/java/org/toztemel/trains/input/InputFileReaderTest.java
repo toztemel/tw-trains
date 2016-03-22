@@ -3,6 +3,7 @@ package org.toztemel.trains.input;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -41,7 +42,14 @@ public class InputFileReaderTest {
 		writer.close();
 	}
 
-	@Test public void 
+	@Test public void
+	givenUnknownFileReturnsEmptyString() throws IOException {
+		String NON_EXISTENT_FILE = "nonexistentfile.txt";
+		InputFileReader reader = new InputFileReader(NON_EXISTENT_FILE);
+		assertTrue(reader.read().isEmpty());
+	}
+
+	@Test public void
 	givenFileReadsInput() throws IOException {
 		String Test_Content = "AB5, BC4";
 		writeToInputFile(Test_Content);
