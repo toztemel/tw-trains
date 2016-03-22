@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.toztemel.trains.TestData;
 import org.toztemel.trains.graph.Town;
-import org.toztemel.trains.graph.Towns;
+import org.toztemel.trains.graph.Graph;
 
 public class ShortestTripTest {
 
@@ -19,7 +19,7 @@ public class ShortestTripTest {
 
 	@Before public void
 	setup() throws Exception {
-		Towns graph = new TestData().prepare();
+		Graph graph = new TestData().prepare();
 		trip = new ShortestTrip(graph);
 	}
 	

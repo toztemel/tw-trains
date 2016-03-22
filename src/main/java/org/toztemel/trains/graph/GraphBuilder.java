@@ -4,9 +4,9 @@ import org.toztemel.trains.exception.NoSuchTownException;
 
 public class GraphBuilder {
 
-    private Towns towns;
+    private Graph towns;
 
-    public GraphBuilder(Towns g) {
+    public GraphBuilder(Graph g) {
         towns = g;
     }
 

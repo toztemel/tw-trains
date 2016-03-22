@@ -4,7 +4,7 @@ import org.toztemel.trains.exception.CannotReadFromInputFileException;
 import org.toztemel.trains.exception.NoSuchTownException;
 import org.toztemel.trains.graph.GraphBuilder;
 import org.toztemel.trains.graph.Town;
-import org.toztemel.trains.graph.Towns;
+import org.toztemel.trains.graph.Graph;
 import org.toztemel.trains.input.InputFileReader;
 import org.toztemel.trains.output.*;
 import org.toztemel.trains.input.InputReader;
@@ -28,7 +28,7 @@ public class TrainRouteOffice {
             inputReader.readFrom(new InputFileReader(fileName));
             List<String> input = inputReader.getInput();
 
-            Towns towns = new Towns();
+            Graph towns = new Graph();
             GraphBuilder builder = new GraphBuilder(towns);
 
             builder.addToGraph(input.toArray(new String[0]));

@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.toztemel.trains.TestData;
 import org.toztemel.trains.graph.Town;
-import org.toztemel.trains.graph.Towns;
+import org.toztemel.trains.graph.Graph;
 
 public class TripWithMaxStopsTest {
 
@@ -18,7 +18,7 @@ public class TripWithMaxStopsTest {
 	
 	@Test public void 
 	routesOfSingleStop() throws Exception {
-		Towns towns = new TestData().prepare();
+		Graph towns = new TestData().prepare();
 	
 		calculator = new TripWithMaxStops(towns, 1);
 		
@@ -34,7 +34,7 @@ public class TripWithMaxStopsTest {
 	
 	@Test public void 
 	routesOfMaxTwoStops() throws Exception {
-		Towns towns = new TestData().prepare();
+		Graph towns = new TestData().prepare();
 		
 		calculator = new TripWithMaxStops(towns, 2);
 		
@@ -52,7 +52,7 @@ public class TripWithMaxStopsTest {
 
 	@Test public void 
 	routesOfMaxThreeStops() throws Exception {
-		Towns simpleGraph = new TestData().prepare();
+		Graph simpleGraph = new TestData().prepare();
 		
 		calculator = new TripWithMaxStops(simpleGraph, 3);
 

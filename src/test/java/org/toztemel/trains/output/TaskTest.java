@@ -6,12 +6,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.toztemel.trains.TestData;
 import org.toztemel.trains.graph.Town;
-import org.toztemel.trains.graph.Towns;
+import org.toztemel.trains.graph.Graph;
 
 public class TaskTest {
 
 	private Display display;
-	private Towns prepare;
+	private Graph prepare;
 
 	@Before public void
 	setup() throws Exception {

@@ -5,14 +5,14 @@ import org.toztemel.trains.exception.NoSuchTownException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Towns {
+public class Graph {
     Set<Town> graph;
 
-    public Towns() {
-        graph = new HashSet<Town>();
+    public Graph() {
+        graph = new HashSet<>();
     }
 
-    public Towns(Set<Town> towns) {
+    public Graph(Set<Town> towns) {
         this();
         graph.addAll(towns);
     }

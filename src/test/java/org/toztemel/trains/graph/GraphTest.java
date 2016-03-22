@@ -7,12 +7,12 @@ import org.junit.Test;
 
 public class GraphTest {
 
-	Towns graph;
+	Graph graph;
 
 	@Before
 	public void 
 	setup() {
-		graph = new Towns();
+		graph = new Graph();
 	}
 
 	@Test public void 

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.toztemel.trains.TestData;
-import org.toztemel.trains.graph.Towns;
+import org.toztemel.trains.graph.Graph;
 import org.toztemel.trains.graph.Town;
 
 public class TripWithExactStopsTest {
@@ -18,7 +18,7 @@ public class TripWithExactStopsTest {
 
 	@Test public void 
 	routesOfSingleStop() throws Exception {
-		Towns simpleGraph = new TestData().prepare();
+		Graph simpleGraph = new TestData().prepare();
 		
 		calculator = new TripWithExactStops(simpleGraph, 1);
 		
@@ -34,7 +34,7 @@ public class TripWithExactStopsTest {
 	
 	@Test public void 
 	routesOfTwoStops() throws Exception {
-		Towns simpleGraph = new TestData().prepare();
+		Graph simpleGraph = new TestData().prepare();
 		
 		calculator = new TripWithExactStops(simpleGraph, 2);
 		
@@ -47,7 +47,7 @@ public class TripWithExactStopsTest {
 	
 	@Test public void 
 	routesOfThreeStops() throws Exception {
-		Towns simpleGraph = new TestData().prepare();
+		Graph simpleGraph = new TestData().prepare();
 		
 		calculator = new TripWithExactStops(simpleGraph, 3);
 		
@@ -56,7 +56,7 @@ public class TripWithExactStopsTest {
 
 	@Test public void 
 	routesOfFourStops() throws Exception {
-		Towns simpleGraph = new TestData().prepare();
+		Graph simpleGraph = new TestData().prepare();
 		
 		calculator = new TripWithExactStops(simpleGraph, 4);
 		

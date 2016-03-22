@@ -8,18 +8,18 @@ import org.junit.Test;
 public class GraphBuilderTest {
 
 	private GraphBuilder builder;
-	private Towns towns;
+	private Graph towns;
 
 	@Before
 	public void 
 	setup() {
-		towns = new Towns();
+		towns = new Graph();
 		builder = new GraphBuilder(towns);
 	}
 
 	@Test
 	public void 
-	containsTwoTownsGivenAnEntry() throws Exception {
+	containsTwoTownsGivenSingleEntry() throws Exception {
 		builder.addToGraph("AB0");
 
 		assertTrue(towns.contains(new Town("A")));

@@ -6,12 +6,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.toztemel.trains.TestData;
 import org.toztemel.trains.graph.Town;
-import org.toztemel.trains.graph.Towns;
+import org.toztemel.trains.graph.Graph;
 
 public class DifferentRoutesOfMaxLengthTest {
 
 	Trip trip;
-	Towns towns;
+	Graph towns;
 	Town a = new Town("A");
 	Town b = new Town("B");
 	Town c = new Town("C");

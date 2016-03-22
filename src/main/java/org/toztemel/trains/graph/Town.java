@@ -43,7 +43,7 @@ public class Town {
         throw new NoSuchRouteException(this, dest);
     }
 
-    public Set<Town> allRoutes() {
+    public Set<Town> getOutgoingRoutes() {
         return destinations.keySet();
     }
 

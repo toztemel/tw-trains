@@ -7,12 +7,12 @@ import org.junit.Test;
 import org.toztemel.trains.TestData;
 import org.toztemel.trains.exception.NoSuchTownException;
 import org.toztemel.trains.graph.Town;
-import org.toztemel.trains.graph.Towns;
+import org.toztemel.trains.graph.Graph;
 import org.toztemel.trains.exception.NoSuchRouteException;
 
 public class DistanceCalculatorTest {
 
-	Towns graph;
+	Graph graph;
 	private Trip calculator;
 
 	@Before public void 
