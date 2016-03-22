@@ -7,8 +7,8 @@ import org.junit.Test;
 public class TrackTest {
 
 	@Test
-	public void 
-	trackHasALength() {
+	public void
+	aTrackEncapsulatesADistance() {
 		Track r = new Track(3);
 		
 		assertEquals (3, r.length());

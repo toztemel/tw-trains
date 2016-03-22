@@ -7,8 +7,8 @@ import org.junit.Test;
 public class RouteTest {
 
 	@Test
-	public void 
-	routeHasADistance() {
+	public void
+	aRouteIsADirectedTrack() {
 		Track r = new Route(new Track(3), new Town("A"), new Town("B"));
 		
 		assertEquals (3, r.length());
